@@ -21,3 +21,5 @@ PGPORT=5432
 PGUSER=postgres
 PGPASSWORD=postgres
 PGDATABASE=devbox
+
+TEST=test
