@@ -23,3 +23,7 @@
  id-conditon
  {:zen/tags #{aidbox.rest.acl/sql-template}
   :template "{{target-id}} = {{filter-table}}.resource#>>'{patient, id}'"}}
+
+ id-org-conditon
+ {:zen/tags #{aidbox.rest.acl/sql-template}
+  :template "{{target-id}} = {{filter-table}}.resource#>>'{managingOrganization, id}'"}}

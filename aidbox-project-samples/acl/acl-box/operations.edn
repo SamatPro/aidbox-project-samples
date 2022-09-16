@@ -6,7 +6,7 @@
  {:zen/tags     #{aidbox.rest.acl/filter}
   :filter-table acl-box.acl/acl-table
   :expression   [:and acl-box.acl/user-condition
-                 acl-box.acl/id-conditon]}
+                 acl-box.acl/id-org-conditon]}
 
  patient-create-filter
  {:zen/tags     #{aidbox.rest.acl/filter}
