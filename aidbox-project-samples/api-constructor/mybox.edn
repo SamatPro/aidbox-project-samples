@@ -19,6 +19,7 @@
  {:zen/tags #{aidbox.rest/api}
   "Patient" {:GET   pt-search-op
              [:id]  {:GET    pt-read-op
+                     :GET    pt-read-org-id
                      :PUT    pt-update-op
                      :DELETE pt-delete-op}}
 
@@ -154,3 +155,8 @@
   :services {:http server}}
 
  }
+
+ pt-read-org-id
+ {:zen/tags    #{aidbox.rest/api}
+  :middlewares [inject-tenant-mw]
+  [:id] {:GET    multi-box.operations/search-patient-by-org}}
