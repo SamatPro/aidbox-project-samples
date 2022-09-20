@@ -18,8 +18,7 @@
  access-api
  {:zen/tags #{aidbox.rest/api}
   "Patient" {:GET   pt-search-op
-             [:id]  {:GET    pt-read-op
-                     :GET    pt-read-org-id
+             [:id]  {:GET    pt-read-org-id
                      :PUT    pt-update-op
                      :DELETE pt-delete-op}}
 
