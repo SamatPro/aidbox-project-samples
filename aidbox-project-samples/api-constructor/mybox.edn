@@ -102,11 +102,11 @@
   :resource "Patient"}
 
  pt-read-org-id
- {:zen/tags    #{aidbox.rest/api}
-  [:id] {:GET   search-patient-by-org}
+ {:zen/tags #{aidbox.rest/api}
+  [:id] {:GET search-patient-by-org}
 
  pt-org-id-param
- {:zen/tags      #{aidbox.rest.acl/request-param}
+ {:zen/tags #{aidbox.rest.acl/request-param}
   :source-schema {:type zen/string}
 
  search-patient-by-org
