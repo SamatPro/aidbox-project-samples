@@ -45,11 +45,11 @@
                        :target   [:route-params :id]}}}
 
  ;; Ensure that user.data.pid is equal route-params.id
- id-org-match-mw
- {:zen/tags #{aidbox.rest/middleware}
-  :engine aidbox.rest.v1/match-middleware
-  :match {:org-id {:path     [:user :data :pid]
-                   :target   [:route-params :id]}}}
+;;  id-org-match-mw
+;;  {:zen/tags #{aidbox.rest/middleware}
+;;   :engine aidbox.rest.v1/match-middleware
+;;   :match {:org-id {:path     [:user :data :pid]
+;;                    :target   [:route-params :id]}}}
 
  ;; Inject patient search parameter from user.data.pid
  inject-patient-search-parameter-mw
@@ -85,7 +85,7 @@
 
  pt-read-op
  {:zen/tags #{aidbox.rest/op}
-  :middlewares  [id-org-match-mw]
+  :middlewares  [id-match-mw]
   :engine aidbox.rest.v1/read
   :resource "Patient"}
 
@@ -103,11 +103,11 @@
 
  pt-read-org-id
  {:zen/tags #{aidbox.rest/api}
-  [:id] {:GET search-patient-by-org}
+  [:id] {:GET search-patient-by-org}}
 
  pt-org-id-param
  {:zen/tags #{aidbox.rest.acl/request-param}
-  :source-schema {:type zen/string}
+  :source-schema {:type zen/string}}
 
  search-patient-by-org
  {:zen/tags #{aidbox.rest/op}
