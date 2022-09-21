@@ -118,7 +118,7 @@
  patient-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
   :params   {:org-id pt-org-id-param}
-  :template "{{target-resource}}#>>'{extension[1], id}' = {{params.org-id}}"}
+  :template "resource#>>'{extension[1], id}' = {{params.org-id}}"}
 ;;    and '{extension, url}' = 'Organization'
 
  ;; Observation operations
