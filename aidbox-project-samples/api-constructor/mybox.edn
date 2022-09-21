@@ -109,18 +109,16 @@
  {:zen/tags      #{aidbox.rest.acl/request-param}
   :source-schema {:type zen/string}
 
+ search-patient-by-org
+ {:zen/tags #{aidbox.rest/op}
+  :resource "Patient"
+  :format   "fhir"
+  :filter   patient-condition}
+
  patient-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
   :params   {:org-id pt-org-id-param}
   :template "{{target-resource}}#>>'{extension, id}' = {{params.org-id}} and '{extension, url}' = 'Organization'"}
-
-
- search-patient-by-org
- {:zen/tags #{aidbox.rest/op}
-  :engine   mybox
-  :resource "Patient"
-  :format   "fhir"
-  :filter   patient-condition}
 
  ;; Observation operations
  obs-search-op
