@@ -101,6 +101,18 @@
   :engine aidbox.rest.v1/delete
   :resource "Patient"}
 
+ pt-read-org-id
+ {:zen/tags    #{aidbox.rest/api}
+  :middlewares [inject-tenant-mw]
+  [:id] {:GET   search-patient-by-org}}
+
+ search-patient-by-org
+ {:zen/tags #{aidbox.rest/op}
+  :engine   acl.acl-box/operations
+  :resource "Patient"
+  :format   "fhir"
+  :filter   patient-filter}
+
  ;; Observation operations
  obs-search-op
  {:zen/tags  #{aidbox.rest/op}
@@ -154,8 +166,3 @@
   :services {:http server}}
 
  }
-
- pt-read-org-id
- {:zen/tags    #{aidbox.rest/api}
-  :middlewares [inject-tenant-mw]
-  [:id] {:GET    multi-box.operations/search-patient-by-org}}
