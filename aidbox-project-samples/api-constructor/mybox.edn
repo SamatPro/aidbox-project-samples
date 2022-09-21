@@ -1,5 +1,5 @@
 {ns mybox
- import #{aidbox aidbox.rest aidbox.rest.v1}
+ import #{aidbox aidbox.rest aidbox.rest.v1 aidbox.rest.acl}
 
  access-sql
  {:zen/tags #{aidbox.rest/api}
@@ -103,15 +103,24 @@
 
  pt-read-org-id
  {:zen/tags    #{aidbox.rest/api}
-  :middlewares [inject-tenant-mw]
-  [:id] {:GET   search-patient-by-org}}
+  [:id] {:GET   search-patient-by-org}
+
+ pt-org-id-param
+ {:zen/tags      #{aidbox.rest.acl/request-param}
+  :source-schema {:type zen/string}
+
+ patient-condition
+ {:zen/tags #{aidbox.rest.acl/sql-template}
+  :params   {:org-id pt-org-id-param}
+  :template "{{target-resource}}#>>'{extension, id}' = {{params.org-id}} and '{extension, url}' = 'Organization'"}
+
 
  search-patient-by-org
  {:zen/tags #{aidbox.rest/op}
-  :engine   acl.acl-box/operations
+  :engine   mybox
   :resource "Patient"
   :format   "fhir"
-  :filter   patient-filter}
+  :filter   patient-condition}
 
  ;; Observation operations
  obs-search-op
