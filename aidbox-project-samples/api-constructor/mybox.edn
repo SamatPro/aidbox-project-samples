@@ -102,7 +102,7 @@
 
  pt-read-org-id
  {:zen/tags #{aidbox.rest/api}
-  :engine aidbox.rest.v1/read
+  :engine aidbox.rest.v1/search
   [:id] {:GET search-patient-by-org}}
 
  pt-org-id-param
