@@ -103,6 +103,7 @@
 
  pt-read-org-id
  {:zen/tags #{aidbox.rest/api}
+  :middlewares  [id-match-mw]
   [:id] {:GET search-patient-by-org}}
 
  pt-org-id-param
