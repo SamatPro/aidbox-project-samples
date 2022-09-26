@@ -107,6 +107,7 @@
 
  pt-org-id-param
  {:zen/tags #{aidbox.rest.acl/request-param}
+  :path          [:user :data :org-id]
   :source-schema {:type zen/string}}
 
  search-patient-by-org
