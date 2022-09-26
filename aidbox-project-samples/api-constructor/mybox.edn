@@ -18,7 +18,7 @@
  access-api
  {:zen/tags #{aidbox.rest/api}
   "Patient" {:GET   pt-search-op
-             [:id]  {:GET    pt-read-org-id
+             [:id]  {:GET    read-patient-by-org
                      :PUT    pt-update-op
                      :DELETE pt-delete-op}}
 
@@ -100,21 +100,21 @@
   :engine aidbox.rest.v1/delete
   :resource "Patient"}
 
- pt-read-org-id
- {:zen/tags #{aidbox.rest/api}
-  [:id] {:GET search-patient-by-org}}
-
  pt-org-id-param
  {:zen/tags #{aidbox.rest.acl/request-param}
   :path          [:user :data :org-id]
   :source-schema {:type zen/string}}
 
- search-patient-by-org
+ read-patient-by-org
  {:zen/tags #{aidbox.rest/op}
   :engine aidbox.rest.acl/read
   :resource "Patient"
   :format   "fhir"
-  :filter   patient-condition}
+  :filter   patient-filter}
+
+ patient-filter
+ {:zen/tags   #{aidbox.rest.acl/filter}
+  :expression patient-condition}
 
  patient-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
