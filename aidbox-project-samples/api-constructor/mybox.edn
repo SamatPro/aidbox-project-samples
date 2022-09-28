@@ -1,5 +1,5 @@
 {ns mybox
- import #{aidbox aidbox.rest aidbox.rest.v1 aidbox.rest.acl}
+ import #{aidbox aidbox.rest aidbox.rest.v1 aidbox.rest.acl hl7-fhir-r4-core.string hl7-fhir-r4-core.Patient}
 
  access-sql
  {:zen/tags #{aidbox.rest/api}
@@ -114,13 +114,34 @@
 
  patient-filter
  {:zen/tags   #{aidbox.rest.acl/filter}
-  :expression patient-condition}
+;;   :expression patient-condition}
+  :expression patient-org-id-condition}
 
  patient-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
   :params   {:org-id pt-org-id-param}
   :template "{{target-resource}}#>>'{identifier, 3, value}' = {{params.org-id}}"}
 ;;    and '{extension, url}' = 'Organization'
+
+ patient-org-id-condition
+ {:zen/tags #{zen/schema zen.fhir/base-schema}
+  :zen.fhir/version "0.5.20"
+  :zen.fhir/type "Patient"
+  :confirms #{hl7-fhir-r4-core.Patient/schema}
+  :params   {:org-id pt-org-id-param}
+;;   :template "{{target-resource}}#>>'{identifier, 3, value}' = {{params.org-id}}"}
+  :type zen/map
+  :keys {:identifier
+            {:type  zen/vector
+             :every {:confirms #{hl7-fhir-r4-core.Identifier/schema}}
+             :slicing
+             {:slices
+              {"Organization"
+               {:schema {:type zen/vector, :maxItems 1}
+                :filter
+                {:engine :match
+                 :match  {:value "{{params.org-id}}"}}}}
+
 
  ;; Observation operations
  obs-search-op
