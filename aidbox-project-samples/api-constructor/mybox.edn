@@ -140,7 +140,7 @@
                {:schema {:type zen/vector, :maxItems 1}
                 :filter
                 {:engine :match
-                 :match  {:value "{{params.org-id}}"}}}}
+                 :match  {:value "{{params.org-id}}"}}}}}}}}
 
 
  ;; Observation operations
