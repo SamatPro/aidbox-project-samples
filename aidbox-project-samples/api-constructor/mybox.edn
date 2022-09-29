@@ -115,7 +115,7 @@
  patient-filter
  {:zen/tags   #{aidbox.rest.acl/filter}
 ;;   :expression patient-condition}
-  :expression patient-org-id-condition}
+  :expression patient-condition}
 
  patient-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
