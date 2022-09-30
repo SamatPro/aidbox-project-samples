@@ -1,5 +1,5 @@
 {ns mybox
- import #{aidbox aidbox.rest aidbox.rest.v1 aidbox.rest.acl hl7-fhir-r4-core.string hl7-fhir-r4-core.Patient}
+ import #{aidbox aidbox.rest aidbox.rest.v1 aidbox.rest.acl}
 
  access-sql
  {:zen/tags #{aidbox.rest/api}
