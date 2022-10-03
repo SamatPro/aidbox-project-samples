@@ -4,8 +4,7 @@
  ;; Share User Specific Data
  access-api
  {:zen/tags #{aidbox.rest/api}
-  "Patient" {:GET   pt-search-op
-             [:id]  {:GET    read-patient-by-org}}}
+  "Patient" {[:id]  {:GET    read-patient-by-org}}}
 
  ;; Middlewares
  ;; Ensure that user.data.org-id is equal route-params.id
