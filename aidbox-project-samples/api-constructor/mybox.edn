@@ -34,7 +34,7 @@
  patient-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
   :params   {:org-id pt-org-id-param}
-  :template "({{target-resource}}#>>'{identifier}')::jsonb @> ('[{\"system\": \"Organization\", \"value\": \"' || {{params.org-id}} || '\"}]')::jsonb"}
+  :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"' || {{params.org-id}} || '\"}]')::jsonb"}
 
  api
  {:zen/tags #{aidbox.rest/api}
