@@ -7,17 +7,17 @@
   "Patient" {[:id]  {:GET    read-patient-by-org}}}
 
  ;; Middlewares
- ;; Ensure that user.data.org-id is equal route-params.id
+ ;; Ensure that user.data.org is equal route-params.id
  id-org-match-mw
  {:zen/tags #{aidbox.rest/middleware}
   :engine aidbox.rest.v1/match-middleware
-  :match {:org-id {:target   [:route-params :id]}}}
+  :match {:org {:target   [:route-params :id]}}}
 
  ;; Operations
  ;; Patient operations
  pt-org-id-param
  {:zen/tags #{aidbox.rest.acl/request-param}
-  :path          [:user :data :org-id]
+  :path          [:user :data :org]
   :source-schema {:type zen/string}}
 
  read-patient-by-org
@@ -33,8 +33,8 @@
 
  patient-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
-  :params   {:org-id pt-org-id-param}
-  :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"' || {{params.org-id}} || '\"}]')::jsonb"}
+  :params   {:org pt-org-param}
+  :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"tenant-id\", \"valueId\": \"' || {{params.org}} || '\"}]')::jsonb"}
 
  api
  {:zen/tags #{aidbox.rest/api}
