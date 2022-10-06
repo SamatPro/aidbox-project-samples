@@ -4,7 +4,7 @@
  ;; Share User Specific Data
  access-api
  {:zen/tags #{aidbox.rest/api}
-  "Patient" {[:id]  {:GET    read-patient-by-org}}}
+  "Patient" {[:id]  {:GET    read-patient-by-org-id}}}
 
  ;; Middlewares
  ;; Ensure that user.data.org is equal route-params.id
@@ -20,7 +20,7 @@
   :path          [:user :data :org]
   :source-schema {:type zen/string}}
 
- read-patient-by-org
+ read-patient-by-org-id
  {:zen/tags #{aidbox.rest/op}
   :engine aidbox.rest.acl/read
   :resource "Patient"
@@ -33,7 +33,7 @@
 
  patient-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
-  :params   {:org pt-org-param}
+  :params   {:org pt-org-id-param}
   :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"tenant-id\", \"valueId\": \"' || {{params.org}} || '\"}]')::jsonb"}
 
  api
