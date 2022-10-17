@@ -4,7 +4,7 @@
  ;; Share User Specific Data
  access-api
  {:zen/tags #{aidbox.rest/api}
-  "Patient" {:GET    read-patients-by-org-id
+  "Patient" {:GET    search-patients-by-org-id
             [:id]  {:GET    read-patient-by-org-id}}}
 
  ;; Middlewares
@@ -28,9 +28,9 @@
   :format   "fhir"
   :filter   patient-filter}
 
- read-patients-by-org-id
+ search-patients-by-org-id
  {:zen/tags #{aidbox.rest/op}
-  :engine aidbox.rest.acl/read
+  :engine aidbox.rest.acl/search
   :resource "Patient"
   :format   "fhir"
   :filter   patients-filter}
