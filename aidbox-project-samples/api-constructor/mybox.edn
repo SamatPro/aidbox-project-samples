@@ -51,7 +51,7 @@
  patients-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
   :params   {:org pt-org-id-param}
-  :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"tenant-id\", \"valueId\": \"' || {{params.org}} || '\"}]')::jsonb"}
+  :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"tenant-id\", \"valueId\": \"' || {{params.org}} || '\"}]')::jsonb limit 1 offset 0"}
 
  api
  {:zen/tags #{aidbox.rest/api}
