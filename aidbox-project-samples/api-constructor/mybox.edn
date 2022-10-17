@@ -4,7 +4,8 @@
  ;; Share User Specific Data
  access-api
  {:zen/tags #{aidbox.rest/api}
-  "Patient" {[:id]  {:GET    read-patient-by-org-id}}}
+  "Patient" {:GET    read-patients-by-org-id
+            [:id]  {:GET    read-patient-by-org-id}}}
 
  ;; Middlewares
  ;; Ensure that user.data.org is equal route-params.id
@@ -27,11 +28,27 @@
   :format   "fhir"
   :filter   patient-filter}
 
+ read-patients-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Patient"
+  :format   "fhir"
+  :filter   patients-filter}
+
  patient-filter
  {:zen/tags   #{aidbox.rest.acl/filter}
   :expression patient-condition}
 
+ patients-filter
+ {:zen/tags   #{aidbox.rest.acl/filter}
+  :expression patients-condition}
+
  patient-condition
+ {:zen/tags #{aidbox.rest.acl/sql-template}
+  :params   {:org pt-org-id-param}
+  :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"tenant-id\", \"valueId\": \"' || {{params.org}} || '\"}]')::jsonb"}
+
+ patients-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
   :params   {:org pt-org-id-param}
   :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"tenant-id\", \"valueId\": \"' || {{params.org}} || '\"}]')::jsonb"}
