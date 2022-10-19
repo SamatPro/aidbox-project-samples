@@ -5,7 +5,37 @@
  access-api
  {:zen/tags #{aidbox.rest/api}
   "Patient" {:GET    search-patients-by-org-id
-            [:id]  {:GET    read-patient-by-org-id}}}
+            [:id]  {:GET    read-patient-by-org-id}}
+  "Practitioner" {:GET    search-practitioners-by-org-id
+                 [:id]  {:GET    read-practitioner-by-org-id}}
+  "Organization" {:GET    search-organizations-by-org-id
+                 [:id]  {:GET    read-organization-by-org-id}}
+  "DiagnosticReport" {:GET    search-diagnosticreports-by-org-id
+                     [:id]  {:GET    read-diagnosticreport-by-org-id}}
+  "Procedure" {:GET    search-procedures-by-org-id
+              [:id]  {:GET    read-procedure-by-org-id}}
+  "Condition" {:GET    search-conditions-by-org-id
+              [:id]  {:GET    read-condition-by-org-id}}
+  "Observation" {:GET    search-observations-by-org-id
+                [:id]  {:GET    read-observation-by-org-id}}
+  "Encounter" {:GET    search-encounters-by-org-id
+              [:id]  {:GET    read-encounter-by-org-id}}
+  "Composition" {:GET    search-compositions-by-org-id
+                [:id]  {:GET    read-composition-by-org-id}}
+  "Immunization" {:GET    search-immunizations-by-org-id
+                 [:id]  {:GET    read-immunization-by-org-id}}
+  "AllergyIntolerance" {:GET    search-allergyintolerances-by-org-id
+                       [:id]  {:GET    read-allergyintolerance-by-org-id}}
+  "Medication" {:GET    search-medications-by-org-id
+               [:id]  {:GET    read-medication-by-org-id}}
+  "MedicationStatement" {:GET    search-medicationstatements-by-org-id
+                        [:id]  {:GET    read-medicationstatement-by-org-id}}
+  "Coverage" {:GET    search-coverages-by-org-id
+             [:id]  {:GET    read-coverage-by-org-id}}
+  "CareTeam" {:GET    search-careteams-by-org-id
+             [:id]  {:GET    read-careteam-by-org-id}}
+  "Device" {:GET    search-devices-by-org-id
+           [:id]  {:GET    read-device-by-org-id}}}
 
  ;; Middlewares
  ;; Ensure that user.data.org is equal route-params.id
@@ -14,43 +44,283 @@
   :engine aidbox.rest.v1/match-middleware
   :match {:org {:target   [:route-params :id]}}}
 
- ;; Operations
- ;; Patient operations
- pt-org-id-param
+ org-id-param
  {:zen/tags #{aidbox.rest.acl/request-param}
   :path          [:user :data :org]
   :source-schema {:type zen/string}}
 
+;; Operations
+;; Patient operations
  read-patient-by-org-id
  {:zen/tags #{aidbox.rest/op}
   :engine aidbox.rest.acl/read
   :resource "Patient"
   :format   "fhir"
-  :filter   patient-filter}
+  :filter   resource-filter}
 
  search-patients-by-org-id
  {:zen/tags #{aidbox.rest/op}
   :engine aidbox.rest.acl/search
   :resource "Patient"
   :format   "fhir"
-  :filter   patients-filter}
+  :filter   resources-filter}
 
- patient-filter
+;; Operations
+;; Practitioner operations
+ read-practitioner-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Practitioner"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-practitioners-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Practitioner"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Organization operations
+ read-organization-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Organization"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-organizations-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Organization"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; DiagnosticReport operations
+ read-diagnosticreport-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "DiagnosticReport"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-diagnosticreports-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "DiagnosticReport"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Procedure operations
+ read-procedure-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Procedure"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-procedures-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Procedure"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Condition operations
+ read-condition-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Condition"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-conditions-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Condition"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Observation operations
+ read-observation-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Observation"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-observations-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Observation"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Encounter operations
+ read-encounter-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Encounter"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-encounters-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Encounter"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Composition operations
+ read-composition-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Composition"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-compositions-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Composition"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Immunization operations
+ read-immunization-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Immunization"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-immunizations-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Immunization"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; AllergyIntolerance operations
+ read-allergyintolerance-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "AllergyIntolerance"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-allergyintolerances-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "AllergyIntolerance"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Medication operations
+ read-medication-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Medication"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-medications-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Medication"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; MedicationStatement operations
+ read-medicationstatement-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "MedicationStatement"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-medicationstatements-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "MedicationStatement"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Coverage operations
+ read-coverage-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Coverage"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-coverages-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Coverage"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; CareTeam operations
+ read-careteam-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "CareTeam"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-careteams-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "CareTeam"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Device operations
+ read-device-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Device"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-devices-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Device"
+  :format   "fhir"
+  :filter   resources-filter}
+
+ resource-filter
  {:zen/tags   #{aidbox.rest.acl/filter}
-  :expression patient-condition}
+  :expression resource-condition}
 
- patients-filter
+ resources-filter
  {:zen/tags   #{aidbox.rest.acl/filter}
-  :expression patients-condition}
+  :expression resources-condition}
 
- patient-condition
+ resource-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
-  :params   {:org pt-org-id-param}
+  :params   {:org org-id-param}
   :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"tenant-id\", \"valueId\": \"' || {{params.org}} || '\"}]')::jsonb"}
 
- patients-condition
+ resources-condition
  {:zen/tags #{aidbox.rest.acl/sql-template}
-  :params   {:org pt-org-id-param}
+  :params   {:org org-id-param}
   :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"tenant-id\", \"valueId\": \"' || {{params.org}} || '\"}]')::jsonb"}
 
  api
