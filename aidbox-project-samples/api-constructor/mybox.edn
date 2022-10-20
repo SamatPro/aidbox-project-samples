@@ -325,13 +325,14 @@
 
  metadata-api
  {:zen/tags #{aidbox.rest/op}
-  :engine   aidbox.rest.v1/aidbox-action
-  :action   :/fhir/Patient/00002458-8a3a-49d9-a800-2f9458d7da33}
+  :GET { :engine   aidbox.rest.v1/aidbox-action
+         :action   :/fhir/Patient/00002458-8a3a-49d9-a800-2f9458d7da33}}
+
 
  api
  {:zen/tags #{aidbox.rest/api}
   "access"  {:apis #{access-api}}
-  "fhir" {"access" {"metadata" {:apis {:GET #{metadata-api}}}}}}
+  "fhir" {"access" {"metadata" {:apis #{metadata-api}}}}}
 
  server
  {:zen/tags #{aidbox/service}
