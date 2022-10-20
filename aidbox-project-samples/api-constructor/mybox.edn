@@ -331,7 +331,7 @@
  api
  {:zen/tags #{aidbox.rest/api}
   "access"  {:apis #{access-api}}
-  "fhir/access/metadata" {:apis #{metadata-api}}}
+  "fhir" {"access" {"metadata" {:apis #{metadata-api}}}}}
 
  server
  {:zen/tags #{aidbox/service}
