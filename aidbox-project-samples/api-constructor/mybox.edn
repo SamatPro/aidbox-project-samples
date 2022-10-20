@@ -323,9 +323,15 @@
   :params   {:org org-id-param}
   :template "({{target-resource}}#>>'{extension}')::jsonb @> ('[{\"url\": \"tenant-id\", \"valueId\": \"' || {{params.org}} || '\"}]')::jsonb"}
 
+ metadata-api
+ {:zen/tags #{aidbox.rest/op}
+  :engine   aidbox.rest.v1/aidbox-action
+  :action   :fhir/metadata}
+
  api
  {:zen/tags #{aidbox.rest/api}
-  "access"  {:apis #{access-api}}}
+  "access"  {:apis #{access-api}}
+  "fhir/access/metadata" {:apis #{metadata-api}}}
 
  server
  {:zen/tags #{aidbox/service}
