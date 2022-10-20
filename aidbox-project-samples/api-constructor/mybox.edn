@@ -326,7 +326,7 @@
  metadata-api
  {:zen/tags #{aidbox.rest/op}
   :engine   aidbox.rest.v1/aidbox-action
-  :action   :/fhir/Patient/00002458-8a3a-49d9-a800-2f9458d7da33}
+  :action   :GET /fhir/Patient/00002458-8a3a-49d9-a800-2f9458d7da33}
 
  api
  {:zen/tags #{aidbox.rest/api}
