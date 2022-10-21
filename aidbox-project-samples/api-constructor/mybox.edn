@@ -325,14 +325,14 @@
 
  metadata-api
  {:zen/tags #{aidbox.rest/op}
-  :GET { :engine   aidbox.rest.v1/aidbox-action
-         :action   :fhir/metadata}}
+  :engine   aidbox.rest.v1/aidbox-action
+  :action   :fhir/metadata}
 
 
  api
  {:zen/tags #{aidbox.rest/api}
   "access"  {:apis #{access-api}}
-  "fhir" {"access" {"metadata" {:apis #{metadata-api}}}}}
+  "fhir" {"access" {"metadata" {:GET metadata-api}}}}
 
  server
  {:zen/tags #{aidbox/service}
