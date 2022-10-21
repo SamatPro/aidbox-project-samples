@@ -325,8 +325,8 @@
 
  metadata-api
  {:zen/tags #{aidbox.rest/op}
-  :GET { :engine   aidbox.rest.v1/aidbox-action
-         :action   :fhir/metadata}}
+  :engine   aidbox.rest.v1/aidbox-action
+  :action   :fhir/metadata}
 
 
  api
