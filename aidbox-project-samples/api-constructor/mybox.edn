@@ -35,15 +35,15 @@
   "CareTeam" {:GET    search-careteams-by-org-id
              [:id]  {:GET    read-careteam-by-org-id}}
   "Device" {:GET    search-devices-by-org-id
-           [:id]  {:GET    read-device-by-org-id}}}
+           [:id]  {:GET    read-device-by-org-id}}
   "Bundle" {:GET    search-bundles-by-org-id
-           [:id]  {:GET    read-bundle-by-org-id}}}
+           [:id]  {:GET    read-bundle-by-org-id}}
   "PractitionerRole" {:GET    search-practitionerroles-by-org-id
-           [:id]  {:GET    read-practitionerrole-by-org-id}}}
+           [:id]  {:GET    read-practitionerrole-by-org-id}}
   "Location" {:GET    search-locations-by-org-id
-           [:id]  {:GET    read-location-by-org-id}}}
+           [:id]  {:GET    read-location-by-org-id}}
   "DocumentReference" {:GET    search-documentreferences-by-org-id
-           [:id]  {:GET    read-documentreference-by-org-id}}}
+           [:id]  {:GET    read-documentreference-by-org-id}}
   "Goal" {:GET    search-goals-by-org-id
            [:id]  {:GET    read-goal-by-org-id}}}
 
