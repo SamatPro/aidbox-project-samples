@@ -36,6 +36,16 @@
              [:id]  {:GET    read-careteam-by-org-id}}
   "Device" {:GET    search-devices-by-org-id
            [:id]  {:GET    read-device-by-org-id}}}
+  "Bundle" {:GET    search-bundles-by-org-id
+           [:id]  {:GET    read-bundle-by-org-id}}}
+  "PractitionerRole" {:GET    search-practitionerroles-by-org-id
+           [:id]  {:GET    read-practitionerrole-by-org-id}}}
+  "Location" {:GET    search-locations-by-org-id
+           [:id]  {:GET    read-location-by-org-id}}}
+  "DocumentReference" {:GET    search-documentreferences-by-org-id
+           [:id]  {:GET    read-documentreference-by-org-id}}}
+  "Goal" {:GET    search-goals-by-org-id
+           [:id]  {:GET    read-goal-by-org-id}}}
 
  ;; Middlewares
  ;; Ensure that user.data.org is equal route-params.id
@@ -305,6 +315,86 @@
   :format   "fhir"
   :filter   resources-filter}
 
+;; Operations
+;; Bundle operations
+ read-bundle-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Bundle"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-bundles-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Bundle"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; PractitionerRole operations
+ read-practitionerrole-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "PractitionerRole"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-practitionerroles-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "PractitionerRole"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Location operations
+ read-location-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Location"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-locations-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Location"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; DocumentReference operations
+ read-documentreference-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "DocumentReference"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-documentreferences-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "DocumentReference"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; Goal operations
+ read-goal-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "Goal"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-goals-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "Goal"
+  :format   "fhir"
+  :filter   resources-filter}
+
  resource-filter
  {:zen/tags   #{aidbox.rest.acl/filter}
   :expression resource-condition}
@@ -331,8 +421,8 @@
 
  api
  {:zen/tags #{aidbox.rest/api}
-  "access"  {:apis #{access-api}}
-  "fhir" {"access" {"metadata" {:GET metadata-api}}}}
+  "fhir" {"access" {:apis #{access-api}}
+                   {"metadata" {:GET metadata-api}}}}
 
  server
  {:zen/tags #{aidbox/service}
