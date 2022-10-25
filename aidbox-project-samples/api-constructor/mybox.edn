@@ -421,8 +421,8 @@
 
  api
  {:zen/tags #{aidbox.rest/api}
-  "fhir" {"access" {:apis #{access-api}}
-                   {"metadata" {:GET metadata-api}}}}
+  "fhir" {"access" {:apis #{access-api}
+                   "metadata" {:GET metadata-api}}}}
 
  server
  {:zen/tags #{aidbox/service}
