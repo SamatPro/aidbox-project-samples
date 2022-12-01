@@ -395,6 +395,54 @@
   :format   "fhir"
   :filter   resources-filter}
 
+;; Operations
+;; MedicationDispense operations
+ read-medicationdispense-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "MedicationDispense"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-medicationdispenses-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "MedicationDispense"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; MedicationAdministration operations
+ read-medicationadministration-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "MedicationAdministration"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-medicationadministrations-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "MedicationAdministration"
+  :format   "fhir"
+  :filter   resources-filter}
+
+;; Operations
+;; MedicationRequest operations
+ read-medicationrequest-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/read
+  :resource "MedicationRequest"
+  :format   "fhir"
+  :filter   resource-filter}
+
+ search-medicationrequests-by-org-id
+ {:zen/tags #{aidbox.rest/op}
+  :engine aidbox.rest.acl/search
+  :resource "MedicationRequest"
+  :format   "fhir"
+  :filter   resources-filter}
+
  resource-filter
  {:zen/tags   #{aidbox.rest.acl/filter}
   :expression resource-condition}
