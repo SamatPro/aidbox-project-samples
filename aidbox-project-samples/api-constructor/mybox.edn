@@ -45,7 +45,13 @@
   "DocumentReference" {:GET    search-documentreferences-by-org-id
            [:id]  {:GET    read-documentreference-by-org-id}}
   "Goal" {:GET    search-goals-by-org-id
-           [:id]  {:GET    read-goal-by-org-id}}}
+           [:id]  {:GET    read-goal-by-org-id}}
+  "MedicationDispense" {:GET    search-medicationdispenses-by-org-id
+           [:id]  {:GET    read-medicationdispense-by-org-id}}
+  "MedicationAdministration" {:GET    search-medicationadministrations-by-org-id
+           [:id]  {:GET    read-medicationadministration-by-org-id}}
+  "MedicationRequest" {:GET    search-medicationrequests-by-org-id
+           [:id]  {:GET    read-medicationrequest-by-org-id}}}
 
  ;; Middlewares
  ;; Ensure that user.data.org is equal route-params.id
